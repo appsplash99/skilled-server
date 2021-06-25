@@ -1,0 +1,7 @@
+### check routes via VSCODE extension REST-Client ###
+
+# Get User
+GET http://localhost:3000/api/user
+
+# Post User
+POST http://localhost:3000/api/user/add-user
