@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
-// Routes
-import { router as userRoutes } from './user.router';
+import { router as userRoutes } from '@src/routes/user.router';
+import { router as videoRoutes } from '@src/routes/video.router';
 
 // initialize router
 export const router = express.Router();
@@ -10,5 +10,6 @@ export const router = express.Router();
  */
 router.get('/status', (req: Request, res: Response) => res.send('OK'));
 
-// user routes
+// api routes
 router.use('/user', userRoutes);
+router.use('/videos', videoRoutes);
