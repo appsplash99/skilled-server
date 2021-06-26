@@ -51,4 +51,4 @@ export const videoSchema = new Schema<IVideo>(
   }
 );
 
-export const VideoModel = model<IVideo>('Video', videoSchema);
+export const Video = model<IVideo>('Video', videoSchema);

@@ -21,4 +21,4 @@ export const playlistSchema = new Schema<IPlaylist>(
   { timestamps: true }
 );
 
-export const PlaylistModel = model<IPlaylist>('Playlist', playlistSchema);
+export const Playlist = model<IPlaylist>('Playlist', playlistSchema);
