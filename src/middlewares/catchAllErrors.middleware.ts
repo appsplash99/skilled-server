@@ -1,8 +1,7 @@
 import consola from 'consola';
-import { Response } from 'express';
-import { IRequest } from '@src/interfaces/request.interface';
+import { IRequest, IResponse } from '@src/interfaces/express.interface';
 
-export const catchAllErrorHandler = (err: Error, req: IRequest, res: Response): void => {
+export const catchAllErrorHandler = (err: Error, req: IRequest, res: IResponse): void => {
   consola.error(err.stack);
   res.status(500).json({ success: false, message: err.message });
 };

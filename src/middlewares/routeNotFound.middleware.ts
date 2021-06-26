@@ -1,7 +1,6 @@
-import { Response } from 'express';
-import { IRequest } from '@src/interfaces/request.interface';
+import { IRequest, IResponse } from '@src/interfaces/express.interface';
 
-export const routeNotFoundHandler = (req: IRequest, res: Response): void => {
+export const routeNotFoundHandler = (req: IRequest, res: IResponse): void => {
   res.status(404).json({
     success: false,
     message: 'Url Route Not Present!',
