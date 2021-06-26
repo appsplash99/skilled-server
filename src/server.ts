@@ -1,10 +1,11 @@
-import { app as expressApp } from './config/expressApp';
-import { port } from './config/constants';
-import { connectToDb } from './config/database';
+import consola from 'consola';
+import { app as expressApp } from '@src/config/expressApp';
+import { port } from '@src/config/constants';
+import { connectToDb } from '@src/config/database';
 
 /** Connect to Mongoose */
 connectToDb();
 
 expressApp.listen(port || 3001, () => {
-  console.log(`Express Server running on port: ${port}`);
+  consola.success(`Express Server running on port: ${port}`);
 });
