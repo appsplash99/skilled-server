@@ -1,11 +1,12 @@
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
-export interface IPlaylistChildSchema extends Document {
+/** Setting sub-document type */
+export interface IPlaylistChildSchema extends Types.Subdocument {
   video: string;
 }
 
 export interface IPlaylist extends Document {
   userId: string;
   name: string;
-  videos: IPlaylistChildSchema[];
+  videos: Types.DocumentArray<IPlaylistChildSchema>;
 }
