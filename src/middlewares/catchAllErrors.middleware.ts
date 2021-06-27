@@ -1,7 +1,14 @@
-import consola from 'consola';
-import { IRequest, IResponse } from '@src/interfaces/express.interface';
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
+/**
+ * DO NOT REMOVE THE DISABLED ESLINT RULES ABOVE
+ */
+import { resJson } from '@src/utils/responseHelpers';
+import { IRequest, IResponse, INextFunction } from '@src/interfaces/express.interface';
 
-export const catchAllErrorHandler = (err: Error, req: IRequest, res: IResponse): void => {
-  consola.error(err.stack);
-  res.status(500).json({ success: false, message: err.message });
+const catchAllErrors = (error: any, req: IRequest, res: IResponse, next: INextFunction): void => {
+  resJson(res, 500, false, 'errorHandler caught something', error);
 };
+
+export { catchAllErrors as errorHandler };
