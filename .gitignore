@@ -1,6 +1,9 @@
 # Ignoring Build folder
 build
 
+# Ignore Files with extension .videos.ts
+src/**/**/fakerDB/**
+
 # Logs
 logs
 *.log
