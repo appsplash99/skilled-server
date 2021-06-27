@@ -23,6 +23,10 @@ export const videoSchema = new Schema<IVideo>(
       trim: true,
       required: 'description is required',
     },
+    channelName: {
+      type: String,
+      required: 'channelName is required',
+    },
     channelLogo: {
       type: String,
       required: 'channelLogo image is required',
