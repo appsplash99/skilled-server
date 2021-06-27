@@ -26,12 +26,16 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'consistent-return': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'error',
     'no-console': 'off',
     'import/prefer-default-export': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
     'import/newline-after-import': ['error', { count: 1 }],
+    'no-underscore-dangle': ['error', { allow: ['_id'] }],
     'no-use-before-define': ['error', { variables: false, functions: false }],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     'import/order': [
       'error',
       {
