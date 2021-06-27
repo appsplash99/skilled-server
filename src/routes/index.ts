@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { userRoutes } from '@src/routes/user.router';
+// import { userRoutes } from '@src/routes/user.router';
 import { videoRoutes } from '@src/routes/video.router';
 import { playlistRoutes } from '@src/routes/playlist.router';
 import { loginRoutes } from '@src/routes/login.router';
@@ -23,7 +23,7 @@ router.use('/register', registerRoutes);
  * TODO: add verifyToken middleware in below
  * protected api routes
  */
-router.use('/user', userRoutes);
+// router.use('/user', userRoutes);
 router.use('/playlist', playlistRoutes);
 
 export { router as apiRoutes };
