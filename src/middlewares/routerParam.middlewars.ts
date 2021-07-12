@@ -8,7 +8,7 @@ import { IRequest, IResponse, INextFunction } from '../interfaces/express.interf
 /**
  * User controller for router.param middleware
  */
-export const findUserById = async (req: IRequest, res: IResponse, next: INextFunction): Promise<void> => {
+export const findUserById = async (req: IRequest, res: IResponse, next: INextFunction): Promise<IResponse | void> => {
   const { userId } = req.params;
   try {
     const user = await User.findById(userId);
@@ -20,14 +20,14 @@ export const findUserById = async (req: IRequest, res: IResponse, next: INextFun
     }
     next();
   } catch (error) {
-    resJson(res, 500, false, `Unable to find User with ${userId}`, error);
+    return  resJson(res, 500, false, `Unable to find User with ${userId}`, error);
   }
 };
 
 /**
  * Video controller for router.param middleware
  */
-export const findVideoById = async (req: IRequest, res: IResponse, next: INextFunction): Promise<void> => {
+export const findVideoById = async (req: IRequest, res: IResponse, next: INextFunction): Promise<IResponse | void> => {
   const { videoId } = req.params;
   try {
     const video = await Video.findById(videoId);
@@ -39,14 +39,14 @@ export const findVideoById = async (req: IRequest, res: IResponse, next: INextFu
     }
     next();
   } catch (error) {
-    resJson(res, 500, false, `Unable to find video with ${videoId}`, error);
+    return resJson(res, 500, false, `Unable to find video with ${videoId}`, error);
   }
 };
 
 /**
  * Playlist controller for router.param middleware
  */
-export const findPlaylistById = async (req: IRequest, res: IResponse, next: INextFunction): Promise<void> => {
+export const findPlaylistById = async (req: IRequest, res: IResponse, next: INextFunction): Promise<IResponse | void> => {
   const { playlistId } = req.params;
   try {
     const playlist = await Playlist.findById(playlistId);
@@ -58,6 +58,6 @@ export const findPlaylistById = async (req: IRequest, res: IResponse, next: INex
     }
     next();
   } catch (error) {
-    resJson(res, 500, false, `Unable to find playlistId with ${playlistId}`, error);
+    return resJson(res, 500, false, `Unable to find playlistId with ${playlistId}`, error);
   }
 };

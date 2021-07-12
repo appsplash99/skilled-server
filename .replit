@@ -1,0 +1,2 @@
+run="npm run start && node build/src/server.js"
+language="nodejs"

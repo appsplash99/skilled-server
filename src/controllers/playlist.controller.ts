@@ -2,6 +2,8 @@ import { IRequest, IResponse } from '../interfaces/express.interface';
 import { Playlist } from '../models/playlist.model';
 import { resJson } from '../utils/responseHelpers';
 
+const defaultPlaylists: string[] = ['Liked Videos', 'Saved Videos', 'Watch Later'];
+
 export const deleteVideoFromPlaylist = async (req: IRequest, res: IResponse): Promise<void> => {
   const { playlist, video } = req;
   try {
@@ -71,13 +73,30 @@ export const getVideosFromPlaylist = async (req: IRequest, res: IResponse): Prom
 export const getAllPlaylists = async (req: IRequest, res: IResponse): Promise<void> => {
   const { user } = req;
   try {
-    const userPlaylists = await Playlist.find({ userId: user?._id });
-    /** Populate N - number of user's playlists */
-    const populatedUserPlaylists = await userPlaylists.map(eachPlaylist =>
-      eachPlaylist.populate('videos.video').execPopulate()
-    );
-    resJson(res, 200, true, "Successfully Populated User's Playlist", 'no error', populatedUserPlaylists);
+    const response = await Playlist.find({ userId: user?._id });
+
+    if (!response.length) {
+      /**  if response is empty -  Create Default playlists */
+			const transformedData = defaultPlaylists.map((playlist) => ({
+				userId: user?._id,
+				name: playlist,
+				videos: [],
+			}));
+			try {
+				const createdPlaylist = await Playlist.insertMany(transformedData);
+        resJson(res, 200, true, "Default playlists created successfully", 'no error', createdPlaylist);
+			} catch (error) {
+        resJson(res, 500, false, "Default Playlist creation Unsuccessful", error);
+			}
+		} else {
+      /** Populate N - number of user's playlists */
+			const responsePromises = await response.map((eachPlaylist) =>
+				eachPlaylist.populate('videos.video').execPopulate(),
+			);
+			const allPlaylists = await Promise.all(responsePromises);
+      resJson(res, 200, true, "Successfully Populated User's Playlist", 'no error', allPlaylists);
+		}
   } catch (error) {
-    resJson(res, 500, false, "Unable to Populate User's Playlist", error);
+    resJson(res, 500, false, "Unable to Get User's Playlist", error);
   }
 };
