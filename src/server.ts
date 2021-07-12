@@ -1,5 +1,5 @@
 import consola from 'consola';
-import { app as expressApp } from '@src/config/expressApp';
+import { expressApp } from '@src/config/expressApp';
 import { port } from '@src/config/constants';
 import { connectToDb } from '@src/config/database';
 
