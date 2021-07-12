@@ -1,1 +1,1 @@
-# Express Typescript Mongoose Eslint Prettier Backend starter template
+# An Express Mongo DB backend via Typescript - to serve Skilled(Video Libary) React Client
