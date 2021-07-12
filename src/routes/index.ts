@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { videoRoutes } from '@src/routes/video.router';
-import { playlistRoutes } from '@src/routes/playlist.router';
-import { loginRoutes } from '@src/routes/login.router';
-import { registerRoutes } from '@src/routes/register.router';
-import { IRequest, IResponse } from '@src/interfaces/express.interface';
-import { verifyToken } from '@src/middlewares/verifyToken.middleware';
+import { videoRoutes } from './video.router';
+import { playlistRoutes } from './playlist.router';
+import { loginRoutes } from './login.router';
+import { registerRoutes } from './register.router';
+import { IRequest, IResponse } from '../interfaces/express.interface';
+import { verifyToken } from '../middlewares/verifyToken.middleware';
 
 // initialize router
 const router = Router();

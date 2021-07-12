@@ -1,10 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { apiRoutes } from '@src/routes';
-import { errorHandler } from '@src/middlewares/catchAllErrors.middleware';
-import { routeNotFound } from '@src/middlewares/routeNotFound.middleware';
-import { IRequest, IResponse } from '@src/interfaces/express.interface';
+import { apiRoutes } from '../routes';
+import { errorHandler } from '../middlewares/catchAllErrors.middleware';
+import { routeNotFound } from '../middlewares/routeNotFound.middleware';
+import { IRequest, IResponse } from '../interfaces/express.interface';
 
 // initialize express app
 const app = express();

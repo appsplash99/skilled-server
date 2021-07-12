@@ -3,9 +3,9 @@
  * DO NOT REMOVE THE DISABLED ESLINT RULES ABOVE
  */
 
-import { Playlist } from '@src/models/playlist.model';
-import { IUser } from '@src/interfaces/user.interface';
-import { IPlaylist } from '@src/interfaces/playlist.interface';
+import { Playlist } from '../models/playlist.model';
+import { IUser } from '../interfaces/user.interface';
+import { IPlaylist } from '../interfaces/playlist.interface';
 
 interface IRegisteredUser {
   userId?: string;

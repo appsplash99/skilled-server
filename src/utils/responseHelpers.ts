@@ -1,7 +1,7 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 
 import consola from 'consola';
-import { IResponse } from '@src/interfaces/express.interface';
+import { IResponse } from '../interfaces/express.interface';
 
 export interface IJsonObj {
   success: boolean;

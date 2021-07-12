@@ -1,7 +1,7 @@
 import consola from 'consola';
-import { expressApp } from '@src/config/expressApp';
-import { port } from '@src/config/constants';
-import { connectToDb } from '@src/config/database';
+import { expressApp } from './config/expressApp';
+import { port } from './config/constants';
+import { connectToDb } from './config/database';
 
 /** Connect to Mongoose */
 connectToDb();

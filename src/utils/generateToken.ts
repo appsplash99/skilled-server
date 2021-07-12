@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { jwtSecret } from '@src/config/constants';
-import { IUser } from '@src/interfaces/user.interface';
+import { jwtSecret } from '../config/constants';
+import { IUser } from '../interfaces/user.interface';
 
 // create + assign a JWT token
 // with userId and TOKEN_SECRET

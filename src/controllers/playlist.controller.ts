@@ -1,6 +1,6 @@
-import { IRequest, IResponse } from '@src/interfaces/express.interface';
-import { Playlist } from '@src/models/playlist.model';
-import { resJson } from '@src/utils/responseHelpers';
+import { IRequest, IResponse } from '../interfaces/express.interface';
+import { Playlist } from '../models/playlist.model';
+import { resJson } from '../utils/responseHelpers';
 
 export const deleteVideoFromPlaylist = async (req: IRequest, res: IResponse): Promise<void> => {
   const { playlist, video } = req;

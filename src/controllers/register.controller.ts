@@ -1,9 +1,9 @@
-import { User } from '@src/models/user.model';
-import { resJson } from '@src/utils/responseHelpers';
-import { registerValidation } from '@src/utils/validation';
-import { initializeNewUser } from '@src/utils/initializeNewUser';
-import { IRequest, IResponse } from '@src/interfaces/express.interface';
-import { generateHashedPassword } from '@src/utils/generateHashedPassword';
+import { User } from '../models/user.model';
+import { resJson } from '../utils/responseHelpers';
+import { registerValidation } from '../utils/validation';
+import { initializeNewUser } from '../utils/initializeNewUser';
+import { IRequest, IResponse } from '../interfaces/express.interface';
+import { generateHashedPassword } from '../utils/generateHashedPassword';
 
 export const registerNewUser = async (req: IRequest, res: IResponse): Promise<void | IResponse> => {
   // validate user before saving to database

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { findVideoById, findPlaylistById } from '@src/middlewares/routerParam.middlewars';
+import { findVideoById, findPlaylistById } from '../middlewares/routerParam.middlewars';
 import {
   deleteVideoFromPlaylist,
   deletePlaylist,
@@ -7,7 +7,7 @@ import {
   createPlaylist,
   getVideosFromPlaylist,
   getAllPlaylists,
-} from '@src/controllers/playlist.controller';
+} from '../controllers/playlist.controller';
 
 const router = Router();
 

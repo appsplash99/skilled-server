@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
-import { User } from '@src/models/user.model';
-import { resJson } from '@src/utils/responseHelpers';
-import { loginValidation } from '@src/utils/validation';
-import { generateToken } from '@src/utils/generateToken';
-import { IRequest, IResponse } from '@src/interfaces/express.interface';
+import { User } from '../models/user.model';
+import { resJson } from '../utils/responseHelpers';
+import { loginValidation } from '../utils/validation';
+import { generateToken } from '../utils/generateToken';
+import { IRequest, IResponse } from '../interfaces/express.interface';
 
 export const loginUser = async (req: IRequest, res: IResponse): Promise<void | IResponse> => {
   // validate user before logging in

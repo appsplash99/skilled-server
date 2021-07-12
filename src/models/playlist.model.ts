@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { IPlaylist, IPlaylistChildSchema } from '@src/interfaces/playlist.interface';
+import { IPlaylist, IPlaylistChildSchema } from '../interfaces/playlist.interface';
 
 const playlistChildSchema = new Schema<IPlaylistChildSchema>({
   video: { type: Schema.Types.ObjectId, ref: 'Video' },

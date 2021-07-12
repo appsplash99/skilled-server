@@ -1,9 +1,9 @@
 import consola from 'consola';
-import { User } from '@src/models/user.model';
-import { Video } from '@src/models/video.model';
-import { Playlist } from '@src/models/playlist.model';
-import { resJson } from '@src/utils/responseHelpers';
-import { IRequest, IResponse, INextFunction } from '@src/interfaces/express.interface';
+import { User } from '../models/user.model';
+import { Video } from '../models/video.model';
+import { Playlist } from '../models/playlist.model';
+import { resJson } from '../utils/responseHelpers';
+import { IRequest, IResponse, INextFunction } from '../interfaces/express.interface';
 
 /**
  * User controller for router.param middleware

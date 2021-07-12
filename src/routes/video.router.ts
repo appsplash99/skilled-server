@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { findVideoById, findPlaylistById } from '@src/middlewares/routerParam.middlewars';
-import { getAllVideos, getOneVideo } from '@src/controllers/video.controller';
+import { findVideoById, findPlaylistById } from '../middlewares/routerParam.middlewars';
+import { getAllVideos, getOneVideo } from '../controllers/video.controller';
 
 const router = Router();
 

@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import consola from 'consola';
 import { jwtSecret } from '../config/constants';
-import { IRequest, IResponse, INextFunction } from '@src/interfaces/express.interface';
+import { IRequest, IResponse, INextFunction } from '../interfaces/express.interface';
 /**
  * To all private/protected routes
  * pass the below function as a middleware

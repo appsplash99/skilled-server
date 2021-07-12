@@ -1,5 +1,5 @@
 import Joi, { ValidationResult } from 'joi';
-import { IRequest } from '@src/interfaces/express.interface';
+import { IRequest } from '../interfaces/express.interface';
 
 /** TODO: might need to change the type for data */
 export const registerValidation = (data: IRequest['body']): ValidationResult => {

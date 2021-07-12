@@ -2,9 +2,9 @@
 /**
  * DO NOT REMOVE THE DISABLED ESLINT RULES ABOVE
  */
-import { Video } from '@src/models/video.model';
-import { resJson } from '@src/utils/responseHelpers';
-import { IRequest, IResponse } from '@src/interfaces/express.interface';
+import { Video } from '../models/video.model';
+import { resJson } from '../utils/responseHelpers';
+import { IRequest, IResponse } from '../interfaces/express.interface';
 
 export const getAllVideos = async (req: IRequest, res: IResponse): Promise<void> => {
   try {
