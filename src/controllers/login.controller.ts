@@ -23,6 +23,7 @@ export const loginUser = async (req: IRequest, res: IResponse): Promise<void | I
   // pass token into response headers
   res.header('auth-token', token).json({
     success: true,
+    userId: user._id,
     token,
   });
 };
