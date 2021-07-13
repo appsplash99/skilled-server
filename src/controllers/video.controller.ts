@@ -6,7 +6,7 @@ import { Video } from '../models/video.model';
 import { resJson } from '../utils/responseHelpers';
 import { IRequest, IResponse } from '../interfaces/express.interface';
 
-export const getAllVideos = async (req: IRequest, res: IResponse): Promise<void> => {
+export const getAllVideos = async (req: IRequest, res: IResponse): Promise<IResponse | void> => {
   try {
     /** TODO: might need to add pagination/sort and filter */
     const videos = await Video.find();
@@ -16,7 +16,7 @@ export const getAllVideos = async (req: IRequest, res: IResponse): Promise<void>
   }
 };
 
-export const getOneVideo = async (req: IRequest, res: IResponse): Promise<void> => {
+export const getOneVideo = async (req: IRequest, res: IResponse): Promise<IResponse | void> => {
   const { video } = req;
   try {
     return resJson(res, 200, true, 'Successfully fetched desider Video!', 'no error', video);
