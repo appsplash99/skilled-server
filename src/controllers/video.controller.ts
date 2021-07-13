@@ -10,17 +10,17 @@ export const getAllVideos = async (req: IRequest, res: IResponse): Promise<void>
   try {
     /** TODO: might need to add pagination/sort and filter */
     const videos = await Video.find();
-    resJson(res, 200, true, 'Successfully fetched all Videos!', 'no error', videos);
+    return resJson(res, 200, true, 'Successfully fetched all Videos!', 'no error', videos);
   } catch (error) {
-    resJson(res, 500, false, 'Unable to get all Videos', error);
+    return resJson(res, 500, false, 'Unable to get all Videos', error);
   }
 };
 
 export const getOneVideo = async (req: IRequest, res: IResponse): Promise<void> => {
   const { video } = req;
   try {
-    resJson(res, 200, true, 'Successfully fetched desider Video!', 'no error', video);
+    return resJson(res, 200, true, 'Successfully fetched desider Video!', 'no error', video);
   } catch (error) {
-    resJson(res, 500, true, 'Unable to get desired Video', error);
+    return resJson(res, 500, true, 'Unable to get desired Video', error);
   }
 };

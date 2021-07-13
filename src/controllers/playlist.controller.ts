@@ -11,9 +11,9 @@ export const deleteVideoFromPlaylist = async (req: IRequest, res: IResponse): Pr
     await playlist?.save();
     const userPlaylist = await Playlist.findById(playlist?._id);
     await userPlaylist?.populate('videos.video').execPopulate();
-    resJson(res, 200, true, `video successfully deleted from ${playlist?.name}`, 'no error', userPlaylist);
+    return resJson(res, 200, true, `video successfully deleted from ${playlist?.name}`, 'no error', userPlaylist);
   } catch (error) {
-    resJson(res, 500, false, `Unable to Delete video (videoId: ${video?._id}) from playlist: ${playlist?.name}`, error);
+    return resJson(res, 500, false, `Unable to Delete video (videoId: ${video?._id}) from playlist: ${playlist?.name}`, error);
   }
 };
 
@@ -21,9 +21,9 @@ export const deletePlaylist = async (req: IRequest, res: IResponse): Promise<voi
   const { playlist } = req;
   try {
     await Playlist.deleteOne({ _id: playlist?._id });
-    resJson(res, 200, true, 'Successfully deleted Playlist', 'no error', playlist?._id);
+    return resJson(res, 200, true, 'Successfully deleted Playlist', 'no error', playlist?._id);
   } catch (error) {
-    resJson(res, 500, false, `Unable to Delete playlist: ${playlist?.id}`, error);
+    return resJson(res, 500, false, `Unable to Delete playlist: ${playlist?.id}`, error);
   }
 };
 
@@ -37,9 +37,9 @@ export const addVideoIntoPlaylist = async (req: IRequest, res: IResponse): Promi
     playlist?.videos.push({ _id: video?._id, video: video?._id });
     await playlist?.save();
     await playlist?.populate('videos.video').execPopulate();
-    resJson(res, 200, true, 'Video Successfully added into Playlist', 'no error', playlist);
+    return resJson(res, 200, true, 'Video Successfully added into Playlist', 'no error', playlist);
   } catch (error) {
-    resJson(res, 500, false, `Unable to add video (videoId: ${video?._id}) into ${playlist?.name}`, error);
+    return resJson(res, 500, false, `Unable to add video (videoId: ${video?._id}) into ${playlist?.name}`, error);
   }
 };
 
@@ -54,9 +54,9 @@ export const createPlaylist = async (req: IRequest, res: IResponse): Promise<voi
   try {
     let playlist = await newPlaylist.save();
     playlist = await playlist.populate('videos.video').execPopulate();
-    resJson(res, 201, true, 'Playlist Created Successfully', 'no error', playlist);
+    return resJson(res, 201, true, 'Playlist Created Successfully', 'no error', playlist);
   } catch (error) {
-    resJson(res, 500, false, 'Playlist Could not be Created with playlist', error);
+    return resJson(res, 500, false, 'Playlist Could not be Created with playlist', error);
   }
 };
 
@@ -64,9 +64,9 @@ export const getVideosFromPlaylist = async (req: IRequest, res: IResponse): Prom
   const { playlist } = req;
   try {
     const populatedPlaylist = await playlist?.populate('videos.video').execPopulate();
-    resJson(res, 200, true, 'Successfully Found Playlist', 'no error', populatedPlaylist);
+    return resJson(res, 200, true, 'Successfully Found Playlist', 'no error', populatedPlaylist);
   } catch (error) {
-    resJson(res, 500, false, `Unable to get Videos of the Playlist: ${playlist?.name}`, error);
+    return resJson(res, 500, false, `Unable to get Videos of the Playlist: ${playlist?.name}`, error);
   }
 };
 
@@ -84,9 +84,9 @@ export const getAllPlaylists = async (req: IRequest, res: IResponse): Promise<vo
 			}));
 			try {
 				const createdPlaylist = await Playlist.insertMany(transformedData);
-        resJson(res, 200, true, "Default playlists created successfully", 'no error', createdPlaylist);
+        return resJson(res, 200, true, "Default playlists created successfully", 'no error', createdPlaylist);
 			} catch (error) {
-        resJson(res, 500, false, "Default Playlist creation Unsuccessful", error);
+        return resJson(res, 500, false, "Default Playlist creation Unsuccessful", error);
 			}
 		} else {
       /** Populate N - number of user's playlists */
@@ -94,9 +94,9 @@ export const getAllPlaylists = async (req: IRequest, res: IResponse): Promise<vo
 				eachPlaylist.populate('videos.video').execPopulate(),
 			);
 			const allPlaylists = await Promise.all(responsePromises);
-      resJson(res, 200, true, "Successfully Populated User's Playlist", 'no error', allPlaylists);
+      return resJson(res, 200, true, "Successfully Populated User's Playlist", 'no error', allPlaylists);
 		}
   } catch (error) {
-    resJson(res, 500, false, "Unable to Get User's Playlist", error);
+    return resJson(res, 500, false, "Unable to Get User's Playlist", error);
   }
 };
