@@ -19,7 +19,7 @@ router.param('playlistId', findPlaylistById);
 router.get('/', getAllPlaylists);
 router.get('/:playlistId', getVideosFromPlaylist);
 
-router.post('/:playlistId', createPlaylist);
+router.post('/:videoId', createPlaylist);
 router.post('/:playlistId/:videoId', addVideoIntoPlaylist);
 
 router.delete('/:playlistId', deletePlaylist);
