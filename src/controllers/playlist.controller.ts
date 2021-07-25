@@ -1,3 +1,4 @@
+import consola from 'consola';
 import { IRequest, IResponse } from '../interfaces/express.interface';
 import { Playlist } from '../models/playlist.model';
 import { resJson } from '../utils/responseHelpers';
@@ -77,29 +78,31 @@ export const getVideosFromPlaylist = async (req: IRequest, res: IResponse): Prom
 };
 
 export const getAllPlaylists = async (req: IRequest, res: IResponse): Promise<IResponse | void> => {
-  const { user } = req;
+  const { userId } = req;
+  consola.info({userId})
   try {
-    const response = await Playlist.find({ userId: user?._id });
-
-    if (!response.length) {
-      /**  if response is empty -  Create Default playlists */
-      const transformedData = defaultPlaylists.map(playlist => ({
-        userId: user?._id,
-        name: playlist,
-        videos: [],
-      }));
-      try {
-        const createdPlaylist = await Playlist.insertMany(transformedData);
-        return resJson(res, 200, true, 'Default playlists created successfully', 'no error', createdPlaylist);
-      } catch (error) {
-        return resJson(res, 500, false, 'Default Playlist creation Unsuccessful', error);
+    if (userId) {
+      const response = await Playlist.find({ userId });
+      if (!response.length) {
+        /**  if response is empty -  Create Default playlists */
+        const transformedData = defaultPlaylists.map(playlist => ({
+          userId,
+          name: playlist,
+          videos: [],
+        }));
+        try {
+          const createdPlaylist = await Playlist.insertMany(transformedData);
+          return resJson(res, 200, true, 'Default playlists created successfully', 'no error', createdPlaylist);
+        } catch (error) {
+          return resJson(res, 500, false, 'Default Playlist creation Unsuccessful', error);
+        }
+      } else {
+        /** Populate N - number of user's playlists */
+        const responsePromises = await response.map(eachPlaylist => eachPlaylist.populate('videos.video').execPopulate());
+        const allPlaylists = await Promise.all(responsePromises);
+        return resJson(res, 200, true, "Successfully Populated User's Playlist", 'no error', allPlaylists);
       }
-    } else {
-      /** Populate N - number of user's playlists */
-      const responsePromises = await response.map(eachPlaylist => eachPlaylist.populate('videos.video').execPopulate());
-      const allPlaylists = await Promise.all(responsePromises);
-      return resJson(res, 200, true, "Successfully Populated User's Playlist", 'no error', allPlaylists);
-    }
+      }
   } catch (error) {
     return resJson(res, 500, false, "Unable to Get User's Playlist", error);
   }
