@@ -17,10 +17,10 @@ export const verifyToken = (req: IRequest, res: IResponse, next: INextFunction) 
   try {
     // verifying token passsed by user
     // in comparison with server's .env TOKEN_SECRET
-    const verifiedUser = jwt.verify(token, jwtSecret);
+    const verifiedUser = jwt.verify(token, jwtSecret) as {_id?: string };
 
     // inject user: userId key-value pair in request
-    req.userId = verifiedUser;
+    if (verifiedUser && verifiedUser?._id) req.userId = verifiedUser._id as string;
     return next();
   } catch (error) {
     consola.error(new Error('Invalid Token'), error);
