@@ -8,7 +8,7 @@ import { IRequest, IResponse, INextFunction } from '../interfaces/express.interf
 /**
  * User controller for router.param middleware
  */
-export const findUserById = async (req: IRequest, res: IResponse, next: INextFunction): Promise<IResponse | void> => {
+export const findUserById = async (req: IRequest, res: IResponse, next: INextFunction): Promise<IResponse | INextFunction | void> => {
   const { userId } = req.params;
   try {
     const user = await User.findById(userId);
@@ -16,9 +16,9 @@ export const findUserById = async (req: IRequest, res: IResponse, next: INextFun
       req.user = user;
       consola.success('User found by userId');
     } else {
-      resJson(res, 404, false, `User Not Found with ${userId}`);
+      return resJson(res, 404, false, `User Not Found with ${userId}`);
     }
-    next();
+    return next();
   } catch (error) {
     return  resJson(res, 500, false, `Unable to find User with ${userId}`, error);
   }
@@ -27,7 +27,7 @@ export const findUserById = async (req: IRequest, res: IResponse, next: INextFun
 /**
  * Video controller for router.param middleware
  */
-export const findVideoById = async (req: IRequest, res: IResponse, next: INextFunction): Promise<IResponse | void> => {
+export const findVideoById = async (req: IRequest, res: IResponse, next: INextFunction): Promise<IResponse | INextFunction | void> => {
   const { videoId } = req.params;
   try {
     const video = await Video.findById(videoId);
@@ -35,9 +35,9 @@ export const findVideoById = async (req: IRequest, res: IResponse, next: INextFu
       req.video = video;
       consola.success('Video found by videoId');
     } else {
-      resJson(res, 404, false, `video Not Found with ${videoId}`);
+      return resJson(res, 404, false, `video Not Found with ${videoId}`);
     }
-    next();
+    return next();
   } catch (error) {
     return resJson(res, 500, false, `Unable to find video with ${videoId}`, error);
   }
@@ -46,7 +46,7 @@ export const findVideoById = async (req: IRequest, res: IResponse, next: INextFu
 /**
  * Playlist controller for router.param middleware
  */
-export const findPlaylistById = async (req: IRequest, res: IResponse, next: INextFunction): Promise<IResponse | void> => {
+export const findPlaylistById = async (req: IRequest, res: IResponse, next: INextFunction): Promise<IResponse | INextFunction | void> => {
   const { playlistId } = req.params;
   try {
     const playlist = await Playlist.findById(playlistId);
@@ -54,9 +54,9 @@ export const findPlaylistById = async (req: IRequest, res: IResponse, next: INex
       req.playlist = playlist;
       consola.success('Playlist found by playlistId');
     } else {
-      resJson(res, 404, false, `playlist Not Found with ${playlistId}`);
+      return resJson(res, 404, false, `playlist Not Found with ${playlistId}`);
     }
-    next();
+    return next();
   } catch (error) {
     return resJson(res, 500, false, `Unable to find playlistId with ${playlistId}`, error);
   }

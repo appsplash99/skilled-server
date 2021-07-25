@@ -21,9 +21,9 @@ export const verifyToken = (req: IRequest, res: IResponse, next: INextFunction) 
 
     // inject user: userId key-value pair in request
     req.userId = verifiedUser;
-    next();
+    return next();
   } catch (error) {
     consola.error(new Error('Invalid Token'), error);
-    res.status(401).json({ success: false, messgge: 'Unauthorized User' });
+    return res.status(401).json({ success: false, messgge: 'Unauthorized User' });
   }
 };
